@@ -1,6 +1,7 @@
-import app from "./init";
+import express from "express";
 import morgan from "morgan";
 
+const app = express();
 const logger = morgan("dev");
 
 app.use((req, res, next) => {
@@ -9,8 +10,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.set(logger);
+app.use(logger);
 
 app.get("/", (req, res, next) => {
     return res.send("Hello express");
 });
+
+export default app;
